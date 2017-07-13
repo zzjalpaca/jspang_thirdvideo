@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue_life/../../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!--不可以用new作为变量  -->
+            <li v-for="news in reversenews">
+                <span>{{ news.title}} </span> -
+                <span>{{ news.time }}</span>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var newslist = [
+        {"title": "广西女科长任职8年 敛财比52只大老虎都狠", "time": "11.16"},
+        {"title": "美法日在吉布提都有基地 西方为啥就揪中国不放", "time": "10:46"},
+        {"title": "徐卫民拟任云南省委巡视组组长(图/简历)", "time": "10:21"},
+        {"title": "老干妈向侵权公司索赔1100万未果 仅获赔60万", "time": "07:31"},
+        {"title": "高温橙色预警:13省区市局地最高温将达37-39℃", "time": "07:12"},
+    ]
+    var app = new Vue({
+        el: "#app",
+        data: {
+            newslist: newslist,
+        },
+        computed:{
+            reversenews: function(){
+                return this.newslist.reverse();
+            }
+        }
+    })
+</script>
+</html>

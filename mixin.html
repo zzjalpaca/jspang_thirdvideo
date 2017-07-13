@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methodsOption</title>
+    <script src="../vue_life/../../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ num }}
+        <p>
+            <button type="button" v-on:click="add">add</button>
+        </p>
+    </div>
+</body>
+<script>
+    var addConsole = {
+        updated: function(){
+            console.log("我现在的值是"+ app.num);
+        }
+    }
+    var addConsole1 = {
+        updated: function(){
+            console.log("我现在的新值是"+ app.num);
+        }
+    }
+    Vue.mixin({
+        updated: function(){
+            console.log("全局更新");
+        }
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            num: 0,
+        },
+        methods: {
+            add: function(){
+                this.num++;
+            }
+        },
+        updated: function(){
+            console.log("内部更新")
+        },
+        mixins: [addConsole,addConsole1],
+        
+    })
+</script>
+</html>

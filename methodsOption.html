@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods Option</title>
+    <script src="../vue_life/../../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ a }}
+        <p>
+            <button type="button" @click="add(2, $event)">add</button>
+
+        </p>
+        <!-- 自定义组件  -->
+        <p>
+            <!--调用原始方法  -->
+            <btn @click.native="add(-3)"></btn>
+        </p>
+    </div>
+    <!--外部调用方法  -->
+    <button onclick="app.add(4)">增加</button>
+</body>
+<script>
+    var btn = {
+        template: `<button type="button">increase</button>`
+    }
+    var app = new Vue({
+        el: "#app",
+        data: {
+            a: 1
+        },
+        components: {
+            'btn': btn,
+        },
+        methods: {
+            add: function (num) {
+                if (num != " ") {
+                    this.a += num;
+                } else {
+                    this.a++;
+                }
+            }
+        }
+    })
+</script>
+
+</html>

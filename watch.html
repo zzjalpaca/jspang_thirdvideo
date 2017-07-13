@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methodsOption</title>
+    <script src="../vue_life/../../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>温度: <span>{{ temperature }}</span>°</p>
+        <p>穿衣指数: <span>{{ dressIndex }}</span></p>
+        <p>
+            <button type="button" v-on:click="increase">increase</button>
+            <button type="button" v-on:click="decrease">decrease</button>
+        </p>
+    </div>
+</body>
+<script>
+    var dress = ["羽绒服", "夹克长裙", "T恤"];
+    var app = new Vue({
+        el: "#app",
+        data: {
+            temperature: 20,
+            dressIndex: "夹克长裙",
+        },
+        methods: {
+            increase: function () {
+                this.temperature += 5;
+            },
+            decrease: function () {
+                this.temperature -= 3;
+            }
+        },
+        // watch: {
+        //     temperature: function(){
+        //         if(this.temperature > 26){
+        //             this.dressIndex = dress[2];
+        //         }else if(this.temperature > 14 && this.temperature < 26){
+        //             this.dressIndex = dress[1];
+        //         }else{
+        //             this.dressIndex = dress[0];
+        //         }
+        //     }
+        // }
+    })
+
+    app.$watch('temperature', function () {
+        if (this.temperature > 26) {
+            this.dressIndex = dress[2];
+        } else if (this.temperature > 14 && this.temperature < 26) {
+            this.dressIndex = dress[1];
+        } else {
+            this.dressIndex = dress[0];
+        }
+    })
+</script>
+
+</html>
